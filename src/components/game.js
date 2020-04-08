@@ -1,28 +1,36 @@
 import React from 'react';
 
-import Header from './header';
-import GuessSection from './guess-section';
-import StatusSection from './status-section';
-import InfoSection from './info-section';
-
+import Header from './Header/header';
+import GuessSection from './GuessSection/guess-section';
+import StatusSection from './StatusSection/status-section';
+import InfoSection from './InfoSection/info-section';
+/*
+import {connect} from 'react-redux';
+import store from '../store';
+*/
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
+    /*
     this.state = {
       guesses: [],
       feedback: 'Make your guess!',
       auralStatus: '',
       correctAnswer: Math.floor(Math.random() * 100) + 1
     };
+    */
   }
-
+/*
   restartGame() {
+    
     this.setState({
       guesses: [],
       feedback: 'Make your guess!',
       auralStatus: '',
       correctAnswer: Math.floor(Math.random() * 100) + 1
     });
+    
+    store.dispatch(restartGame());
   }
 
   makeGuess(guess) {
@@ -75,25 +83,29 @@ export default class Game extends React.Component {
 
     this.setState({ auralStatus });
   }
-
+*/
   render() {
+    /*
     const { feedback, guesses, auralStatus } = this.state;
     const guessCount = guesses.length;
-
+    */
     return (
       <div>
-        <Header
+        <Header/*
           onRestartGame={() => this.restartGame()}
-          onGenerateAuralUpdate={() => this.generateAuralUpdate()}
+          onGenerateAuralUpdate={() => this.generateAuralUpdate()}*/          
         />
         <main role="main">
           <GuessSection
+          /*
             feedback={feedback}
             guessCount={guessCount}
             onMakeGuess={guess => this.makeGuess(guess)}
+            */
           />
-          <StatusSection guesses={guesses} 
-            auralStatus={auralStatus}
+          <StatusSection
+          /* guesses={guesses} 
+            auralStatus={auralStatus}*/
           />
           <InfoSection />
         </main>
@@ -101,3 +113,12 @@ export default class Game extends React.Component {
     );
   }
 }
+/*
+export const mapStateToProps = state => ({
+  guesses: state.guesses,
+  feedback: state.feedback,
+  correctAnswer: Math.floor(Math.random() * 100) + 1
+});
+
+export default connect(mapStateToProps)(Game);
+*/

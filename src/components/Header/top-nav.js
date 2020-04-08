@@ -1,4 +1,6 @@
 import React from 'react';
+import store from './../../store';
+import {restartGame, generateAuralUpdate } from './../../actions'
 
 import './top-nav.css';
 
@@ -20,7 +22,7 @@ export default function TopNav(props) {
             href="#feedback"
             className="new"
             aria-label="Start a new game"
-            onClick={() => props.onRestartGame()}
+            onClick={e=>store.dispatch(restartGame())}
           >
             + New Game
           </a>
@@ -31,7 +33,7 @@ export default function TopNav(props) {
             /* the `visuallyhidden` class hides an element 
             while leaving it available to screen reader users  */
             className="visuallyhidden focusable status-link"
-            onClick={() => props.onGenerateAuralUpdate()}
+            onClick={e=>store.dispatch(generateAuralUpdate())}            
           >
             Hear state of game
           </a>
