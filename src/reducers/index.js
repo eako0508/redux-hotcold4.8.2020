@@ -10,9 +10,16 @@ const initialState = {
 export const reducer = (state=initialState, action) => {
   if(action.type === RESTART_GAME){
     return initialState;
-  } else if(action.type === GENERATE_AURAL_UPDATE){
-    //
-  } else if(action.type === MAKE_GUESS){
+  } 
+  else if(action.type === GENERATE_AURAL_UPDATE){
+    const pluralize = state.guesses.length !== 1;
+    let  auralStatus = `Here's the status of the game right now: ${state.feedback} You've made ${state.guesses.length} ${pluralize ? 'guesses' : 'guess'}.`;
+    if (state.guesses.length > 0) {
+      auralStatus += ` ${pluralize ? 'In order of most- to least-recent, they are' : 'It was'}: ${state.guesses.reverse().join(', ')}`;
+    }
+    return Object.assign({}, state, {...state, auralStatus});
+  } 
+  else if(action.type === MAKE_GUESS){
     var guess = parseInt(action.number, 10);
     if(isNaN(guess)){
       return Object.assign({}, state, {...state, feedback: 'Please enter a valid number'});
@@ -38,26 +45,3 @@ export const reducer = (state=initialState, action) => {
   }
 	return state;
 };
-
-/*
-
-
-generateAuralUpdate() {
-    const { guesses, feedback } = this.state;
-
-    // If there's not exactly 1 guess, we want to
-    // pluralize the nouns in this aural update.
-    const pluralize = guesses.length !== 1;
-
-    let  auralStatus = `Here's the status of the game right now: ${feedback} You've made ${guesses.length} ${pluralize ? 'guesses' : 'guess'}.`;
-
-    if (guesses.length > 0) {
-      auralStatus += ` ${pluralize ? 'In order of most- to least-recent, they are' : 'It was'}: ${guesses.reverse().join(', ')}`;
-    }
-
-
-    this.setState({ auralStatus });
-  }
-
-
-*/

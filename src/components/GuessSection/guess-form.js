@@ -11,7 +11,7 @@ export default class GuessForm extends React.Component {
     
     //if (this.props.onMakeGuess) {
       const value = this.input.value;
-      //this.props.onMakeGuess(value);
+      
       store.dispatch(makeGuess(value));
     //}
     this.input.value = '';
@@ -23,8 +23,7 @@ export default class GuessForm extends React.Component {
     return (
       <form onSubmit={e =>this.onSubmit(e)}>
         <input
-          type="number"
-          //type='text'
+          type="number"          
           name="userGuess"
           id="userGuess"
           className="text"
@@ -32,8 +31,7 @@ export default class GuessForm extends React.Component {
           max="100"
           autoComplete="off"
           aria-labelledby="feedback"
-          ref={input => (this.input = input)}
-          //value = {props.guessValue}
+          ref={input => (this.input = input)}          
           required
         />
         <button 
@@ -48,10 +46,3 @@ export default class GuessForm extends React.Component {
     );
   }
 }
-/*
-const mapStateToProp = state => ({
-  
-});
-
-export default connect(mapStateToProp)(GuessForm);
-*/
