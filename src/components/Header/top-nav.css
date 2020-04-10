@@ -14,6 +14,10 @@ nav ul li:first-child {
   float: left;
 }
 
+nav ul li:nth-child(2) {
+  padding-left: 10px
+}
+
 nav ul li {
   float: right;
 }
