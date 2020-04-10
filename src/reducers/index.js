@@ -1,3 +1,5 @@
+import {RESTART_GAME, GENERATE_AURAL_UPDATE, MAKE_GUESS} from './../actions';
+
 const initialState = {
 	guesses: [],
 	feedback: 'Make your guess!',
@@ -6,20 +8,17 @@ const initialState = {
 }
 
 export const reducer = (state=initialState, action) => {
-//
-	return state;
-};
-
-/*
-makeGuess(guess) {
-    guess = parseInt(guess, 10);
-    if (isNaN(guess)) {
-      this.setState({ feedback: 'Please enter a valid number' });
-      return;
+  if(action.type === RESTART_GAME){
+    return initialState;
+  } else if(action.type === GENERATE_AURAL_UPDATE){
+    //
+  } else if(action.type === MAKE_GUESS){
+    var guess = parseInt(action.number, 10);
+    if(isNaN(guess)){
+      return Object.assign({}, state, {...state, feedback: 'Please enter a valid number'});
     }
 
-    const difference = Math.abs(guess - this.state.correctAnswer);
-
+    const difference = Math.abs(guess - state.correctAnswer);
     let feedback;
     if (difference >= 50) {
       feedback = 'You\'re Ice Cold...';
@@ -33,17 +32,15 @@ makeGuess(guess) {
       feedback = 'You got it!';
     }
 
-    this.setState({
-      feedback,
-      guesses: [...this.state.guesses, guess]
+    return Object.assign({}, state, {
+      ...state, feedback, guesses: [...state.guesses, action.number]      
     });
-
-    // We typically wouldn't touch the DOM directly like this in React
-    // but this is the best way to update the title of the page,
-    // which is good for giving screen-reader users
-    // instant information about the app.
-    document.title = feedback ? `${feedback} | Hot or Cold` : 'Hot or Cold';
   }
+	return state;
+};
+
+/*
+
 
 generateAuralUpdate() {
     const { guesses, feedback } = this.state;
@@ -62,22 +59,5 @@ generateAuralUpdate() {
     this.setState({ auralStatus });
   }
 
-restartGame() {
-    
-    this.setState({
-      guesses: [],
-      feedback: 'Make your guess!',
-      auralStatus: '',
-      correctAnswer: Math.floor(Math.random() * 100) + 1
-    });
-    
-    store.dispatch(restartGame());
-  }
 
-  makeGuess(guess) {
-    guess = parseInt(guess, 10);
-    if (isNaN(guess)) {
-      this.setState({ feedback: 'Please enter a valid number' });
-      return;
-    }
 */

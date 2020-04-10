@@ -24,6 +24,7 @@ export default class GuessForm extends React.Component {
       <form onSubmit={e =>this.onSubmit(e)}>
         <input
           type="number"
+          //type='text'
           name="userGuess"
           id="userGuess"
           className="text"

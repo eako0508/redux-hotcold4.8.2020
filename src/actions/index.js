@@ -9,8 +9,9 @@ export const generateAuralUpdate = () =>({
 });
 
 export const MAKE_GUESS = 'MAKE_GUESS';
-export const makeGuess = () =>({
-    type: MAKE_GUESS
+export const makeGuess = number =>({
+    type: MAKE_GUESS,
+    number
 });
 /*
 makeGuess(guess) {
